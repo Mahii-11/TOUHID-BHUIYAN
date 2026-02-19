@@ -31,6 +31,7 @@ export default function Hero() {
                 
                 <div className="w-full md:w-2/5 mt-12 md:mt-0 relative flex justify-center md:justify-end">
                    <div className="relative z-10">
+                       <div className="absolute -inset-4 border border-gold/30 rounded-sm z-0 translate-x-4 translate-y-4 hidden md:block"></div>
                       <img 
                          src="/images/touhid-11.png" 
                          alt="Prof. Touhid Bhuiyan" 
