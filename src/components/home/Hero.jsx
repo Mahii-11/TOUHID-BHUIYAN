@@ -32,7 +32,7 @@ export default function Hero() {
                 <div className="w-full md:w-2/5 mt-12 md:mt-0 relative flex justify-center md:justify-end">
                    <div className="relative z-10">
                       <img 
-                         src="/images/touhid-8.jpg" 
+                         src="/images/touhid-11.png" 
                          alt="Prof. Touhid Bhuiyan" 
                          className="relative z-10 w-full max-w-md rounded-sm shadow-2xl object-cover"
                          style={{maxHeight: '500px'}}

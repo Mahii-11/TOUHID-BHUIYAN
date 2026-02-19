@@ -14,7 +14,7 @@ export default function Navbar() {
         {/* Left Side */}
         <div className="flex items-center gap-4 text-center md:text-left">
           <img
-            src="/images/professor-portrait.png"
+            src="/images/touhid-11.png"
             alt="Prof. Touhid Bhuiyan"
             className="w-12 h-12 rounded-full border-2 border-gold object-cover"
           />
