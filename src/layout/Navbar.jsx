@@ -31,21 +31,7 @@ export default function Navbar() {
         {/* Right Side */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
           
-          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <Button 
-              variant="outline" 
-              className="text-white border-white/30 hover:bg-white/10 hover:text-white rounded-none px-4 md:px-6 w-full sm:w-auto"
-            >
-              Request a Talk
-            </Button>
-    
-            <Button 
-              variant="outline" 
-              className="text-white border-white/30 hover:bg-white/10 hover:text-white rounded-none px-4 md:px-6 w-full sm:w-auto"
-            >
-              Policy Consultation
-            </Button>
-          </div>
+       
     
           {/* Social Icons */}
           <div className="flex gap-2 justify-center sm:ml-4">

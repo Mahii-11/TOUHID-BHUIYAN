@@ -1,16 +1,15 @@
-import Home from "../pages/Home";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Home from "../pages/Home"
+import Navbar from "../layout/Navbar";
+
 
 
 export default function AppLayout() {
   return (
     <div>
-        <Navbar />
+      <Navbar />
         <main>
-         <Home/>
+         <Home />
         </main>
-        <Footer />
     </div>
   )
 }
