@@ -50,9 +50,6 @@ export default function Hero() {
                       <Button className="bg-gold hover:bg-yellow-600 text-navy font-semibold px-8 py-6 rounded-sm text-base">
                          Explore Research
                       </Button>
-                      <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-sm text-base">
-                         View Policy Briefs <FaArrowRight className="ml-2 text-xs" />
-                      </Button>
                    </div>
                 </div>
                 
