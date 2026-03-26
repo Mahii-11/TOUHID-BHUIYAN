@@ -5,26 +5,21 @@ import Publication from "../components/home/Publication";
 import StatsSection from "../components/home/StatsSection";
 import SocialImpact from "../components/home/SocialImpact";
 import CallToAction from "../components/home/CallToAction";
+import LatestPublicationSlider from "../components/home/LatestPublicationSlider";
+
 
 
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Hero Section */}
       <Hero />
-      {/* About Section */}
       <About />
-      {/* Cards Section */}
       <Cards />
-      {/* Publication and Media Section */}
-      <Publication />
-      {/* Stats Section */}
+      <LatestPublicationSlider/>
       <StatsSection />
-      {/* Social Impact Section */}
       <SocialImpact/>
-      {/* Footer Call to Action */}
-       <CallToAction />
+      <CallToAction />
     </div>
   );
 }

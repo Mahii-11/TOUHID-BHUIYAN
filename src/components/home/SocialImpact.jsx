@@ -3,9 +3,8 @@ import { IoMdSchool } from "react-icons/io";
 import { MdPolicy } from "react-icons/md";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { getSocialImpactData } from "../../services/api"
+import { getSocialImpactData } from "../../services/api";
 import SocialImpactSkeleton from "../../loaders/SocialImpactSkeleton";
-
 
 const iconMap = {
   "Capacity Building": IoMdSchool,
@@ -13,61 +12,93 @@ const iconMap = {
   "International Collaboration": FaGlobeAmericas,
 };
 
+const descMap = {
+  "Capacity Building":
+    "Empowering institutions and professionals through advanced training and digital transformation programs.",
+  "Youth Mentoring":
+    "Guiding young minds with leadership, technology skills, and future-ready career development support.",
+  "International Collaboration":
+    "Building global partnerships for research, innovation, and cybersecurity governance excellence.",
+};
+
 export default function SocialImpact() {
-   const [impacts, setImpacts] = useState([]);
-   const [loading, setLoading] = useState(true);
+  const [impacts, setImpacts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
-      const loadImpacts = async () => {
-         const data = await getSocialImpactData();
-         setImpacts(data?.data || []);
-         setLoading(false);
-      };
-      loadImpacts();
-   }, []);
+  useEffect(() => {
+    const loadImpacts = async () => {
+      const data = await getSocialImpactData();
+      setImpacts(data?.data || []);
+      setLoading(false);
+    };
+    loadImpacts();
+  }, []);
 
-    if (loading) return <SocialImpactSkeleton />;
-
-
-
+  if (loading) return <SocialImpactSkeleton />;
 
   return (
-     <section className="bg-gray-50 py-16 md:py-24 relative">
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                 {/* Background decorative geometry could go here */}
-              </div>
-             <div className="container mx-auto px-6 md:px-12 relative z-10">
-                <h3 className="text-2xl font-serif font-bold text-navy mb-10 pl-4 border-l-4 border-gold">Driving Social Impact</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {impacts.map((item, id) => {
+    <section className="bg-gray-50 py-16 md:py-24 relative">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
 
-                     const Icon = iconMap[item.title];
-                     return (
+        <h3 className="text-2xl font-serif font-bold text-navy mb-10 pl-4 border-l-4 border-gold">
+          Driving Social Impact
+        </h3>
 
-                         <div 
-                         key={id}
-                         className="group relative h-64 overflow-hidden rounded-sm shadow-lg cursor-pointer">
-                      <img  src={item.image} alt="Capacity Building" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                      <div className="absolute inset-0 bg-navy/60 group-hover:bg-navy/50 transition-colors flex flex-col items-center justify-center p-6 text-center">
-                         <h4 className="text-white font-serif text-xl font-bold mb-2"> {item.title}</h4>
-                         <div className="w-12 h-12 border border-gold/50 rounded-full flex items-center justify-center mt-2">
-                            <Icon className="text-gold text-xl" />
-                         </div>
-                      </div>
-                   </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                   );
-                 })}
-               </div>
+          {impacts.map((item, id) => {
+            const Icon = iconMap[item.title];
 
-    
-                <div className="flex justify-center mt-12">
-                   <Button className="bg-navy hover:bg-navy-light text-white px-8 py-6 text-base rounded-sm shadow-xl">
-                      Visit Newsroom &gt;
-                   </Button>
+            return (
+              <div
+                key={id}
+                className="group bg-white rounded-sm shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500"
+              >
+
+                {/* IMAGE */}
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+
+                  {/* ICON OVERLAY (CENTER) */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-navy/40 group-hover:bg-navy/30 transition-colors duration-500">
+                    <div className="w-14 h-14 rounded-full border border-gold/60 flex items-center justify-center backdrop-blur-sm bg-white/10 group-hover:scale-110 transition-transform duration-500">
+                      <Icon className="text-gold text-2xl" />
+                    </div>
+                  </div>
                 </div>
-             </div>
-          </section>
-  )
+
+                {/* CONTENT */}
+                <div className="p-6 text-center space-y-3">
+
+                  {/* TITLE */}
+                  <h4 className="text-navy font-serif text-lg font-bold tracking-wide">
+                    {item.title}
+                  </h4>
+
+                  {/* DESCRIPTION (HARD CODED) */}
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {descMap[item.title]}
+                  </p>
+
+                </div>
+              </div>
+            );
+          })}
+
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center mt-12">
+          <Button className="bg-navy hover:bg-navy-light text-white px-8 py-6 text-base rounded-sm shadow-xl hover:scale-105 transition-all duration-300">
+            Visit Newsroom &gt;
+          </Button>
+        </div>
+
+      </div>
+    </section>
+  );
 }

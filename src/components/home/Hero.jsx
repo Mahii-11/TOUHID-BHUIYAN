@@ -1,8 +1,8 @@
-import {FaArrowRight} from "react-icons/fa";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { getHeroData } from "../../services/api";
 import HeroSkeleton from "../../loaders/HeroSkeleton";
+import { Link } from "react-router";
 
 
 export default function Hero() {
@@ -47,17 +47,20 @@ export default function Hero() {
                    </div>
                    
                    <div className="flex flex-wrap gap-4 pt-4">
-                      <Button className="bg-gold hover:bg-yellow-600 text-navy font-semibold px-8 py-6 rounded-sm text-base">
+                    <Link to="/research">
+                      <Button className="bg-gold hover:bg-yellow-600 text-navy font-semibold px-8 py-6 rounded-sm text-base cursor-pointer">
                          Explore Research
                       </Button>
+                    </Link>
                    </div>
                 </div>
                 
-                <div className="w-full md:w-2/5 mt-12 md:mt-0 relative flex justify-center md:justify-end">
+                <div className="w-full md:w-2/5 mt-12 md:mt-0 relative flex justify-center md:ml-5">
                    <div className="relative z-10">
-                       <div className="absolute -inset-4 border border-gold/30 rounded-sm z-0 translate-x-4 translate-y-4 hidden md:block"></div>
+                     <div className="absolute -inset-4 border border-[#c9a84c]/40 rounded-sm z-0 translate-x-4 translate-y-4 hidden md:block"></div>
                       <img 
-                         src={data.image}
+                        // src={data.image}
+                        src="/images/touhid-01.png"
                          alt="Prof. Touhid Bhuiyan" 
                          className="relative z-10 w-full max-w-md rounded-sm shadow-2xl object-cover"
                          style={{maxHeight: '500px'}}

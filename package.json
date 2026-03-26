@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-    "dependencies": {
+  "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -64,6 +64,7 @@
     "react-hook-form": "^7.66.0",
     "react-icons": "^5.5.0",
     "react-resizable-panels": "^2.1.9",
+    "react-router": "^7.13.2",
     "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
@@ -76,17 +77,16 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
-  "@replit/vite-plugin-cartographer": "^0.4.4",
-  "@replit/vite-plugin-dev-banner": "^0.1.1",
-  "@replit/vite-plugin-runtime-error-modal": "^0.0.4",
-  "@tailwindcss/vite": "^4.1.14",
-  "@vitejs/plugin-react": "^5.0.4",
-  "autoprefixer": "^10.4.21",
-  "drizzle-kit": "^0.31.4",
-  "esbuild": "^0.25.0",
-  "postcss": "^8.5.6",
-  "tailwindcss": "^4.1.14",
-  "vite": "^7.1.9"
-}
-
+    "@replit/vite-plugin-cartographer": "^0.4.4",
+    "@replit/vite-plugin-dev-banner": "^0.1.1",
+    "@replit/vite-plugin-runtime-error-modal": "^0.0.4",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "drizzle-kit": "^0.31.4",
+    "esbuild": "^0.25.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.14",
+    "vite": "^7.1.9"
+  }
 }
