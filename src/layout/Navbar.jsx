@@ -47,7 +47,7 @@ export default function PremiumNavbar() {
             <div className="relative flex-shrink-0">
               <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#c9a84c] via-[#f5d98a] to-[#c9a84c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
               <img
-                src="/images/touhid-11.png"
+                src="/images/touhid-01.png"
                 alt="Prof. Touhid Bhuiyan"
                 className="relative w-11 h-11 rounded-full border-2 border-[#c9a84c]/60 object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -150,7 +150,7 @@ export default function PremiumNavbar() {
         <div className="px-5 py-5 border-b border-white/5">
           <div className="flex items-center gap-3">
             <img
-              src="/images/touhid-11.png"
+              src="/images/touhid-01.png"
               alt="Prof. Touhid Bhuiyan"
               className="w-10 h-10 rounded-full border border-[#c9a84c]/40 object-cover"
             />
