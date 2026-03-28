@@ -12,14 +12,6 @@ const iconMap = {
   "International Collaboration": FaGlobeAmericas,
 };
 
-const descMap = {
-  "Capacity Building":
-    "Empowering institutions and professionals through advanced training and digital transformation programs.",
-  "Youth Mentoring":
-    "Guiding young minds with leadership, technology skills, and future-ready career development support.",
-  "International Collaboration":
-    "Building global partnerships for research, innovation, and cybersecurity governance excellence.",
-};
 
 export default function SocialImpact() {
   const [impacts, setImpacts] = useState([]);
@@ -79,9 +71,9 @@ export default function SocialImpact() {
                     {item.title}
                   </h4>
 
-                  {/* DESCRIPTION (HARD CODED) */}
+                  
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    {descMap[item.title]}
+                  {item.short_description}
                   </p>
 
                 </div>

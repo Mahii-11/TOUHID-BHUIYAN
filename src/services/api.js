@@ -62,3 +62,28 @@ export const getStatsSection = () => {
 export const getSettings = () => {
   return fetchData(`${BASE_URL}/setting-data`);
 }
+
+
+export const getPublication = async (page = 1) => {
+  const res = await fetch(`${BASE_URL}/publication-data?page=${page}`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const json = await res.json();
+  return json.data;
+}
+
+
+
+
+export const fetchVideos = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/video-gallery-data`);
+    const json = await res.json();
+
+    return json?.data?.data || [];
+  } catch (error) {
+    console.error("Error fetching videos:", error);
+    return [];
+  }
+};

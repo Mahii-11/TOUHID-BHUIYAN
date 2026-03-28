@@ -7,12 +7,24 @@ export default function Cards() {
 
    const [cards, setCards] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
   const loadCards = async () => {
     try {
       const res = await getCards();  
-      console.log(res);
-      setCards(res);
+      console.log("Fetched Cards:", res);
+
+      // Directly set array, long_description ignore
+      const formatted = res.map((card) => ({
+        id: card.id,
+        title: card.title,
+        buttonText: card.buttonText,
+        items: card.short_description
+          .split("\n")
+          .map((i) => i.trim())
+          .filter(Boolean),
+      }));
+
+      setCards(formatted);
     } catch (error) {
       console.error(error);
     }
@@ -20,9 +32,6 @@ useEffect(() => {
 
   loadCards();
 }, []);
-
-
-
 
   return (
      <section className="bg-gray-50 py-16">

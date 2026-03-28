@@ -1,7 +1,7 @@
 import Home from "./pages/Home"
 import AppLayout from "./layout/AppLayout"
 import { createBrowserRouter, RouterProvider } from "react-router"
-import ResearchTable from "./components/home/ResearchTable";
+import ResearchTable from "./pages/ResearchTable";
 
 
 const router = createBrowserRouter([
