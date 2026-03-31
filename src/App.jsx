@@ -2,6 +2,7 @@ import Home from "./pages/Home"
 import AppLayout from "./layout/AppLayout"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import ResearchTable from "./pages/ResearchTable";
+import CapabilitiesDetails from "./pages/CapabilitiesDetails";
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/research",
         element: <ResearchTable />
+      },
+      {
+        path: "capabilities",
+        element: <CapabilitiesDetails />
       }
     ]
   }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import { getCards } from "../../services/api";
+import { Link } from "react-router";
 
 export default function Cards() {
 
@@ -59,9 +60,11 @@ export default function Cards() {
                          </ul>
                       </CardContent>
                       <CardFooter className="pb-8 pt-0 flex justify-center">
-                         <Button className="bg-navy hover:bg-navy-light text-white w-full rounded-sm">
-                             {card.buttonText} &gt;
-                         </Button>
+                        <Link to="/capabilities">
+                          <Button className="bg-navy hover:bg-navy-light text-white w-full rounded-sm cursor-pointer">
+                            {card.buttonText} &gt;
+                          </Button>
+                        </Link>
                       </CardFooter>
                    </Card>
                    ))}

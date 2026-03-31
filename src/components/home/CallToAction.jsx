@@ -12,7 +12,7 @@ export default function CallToAction() {
                   Request a Talk
                </Button>
                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-sm w-full md:w-auto">
-                  Collaboration Inquiry &gt;
+                  contact us  &gt;
                </Button>
             </div>
          </div>
