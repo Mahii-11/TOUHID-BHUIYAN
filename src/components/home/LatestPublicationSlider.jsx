@@ -1,37 +1,26 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import { getPublication } from "../../services/api";
 
 export default function LatestPublicationSlider() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    setData([
-      {
-        topic: "AI Governance",
-        image:
-          "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200",
-        short_description:
-          "Exploring modern AI policy frameworks and ethical governance systems.",
-        link: "#",
-      },
-      {
-        topic: "Cybersecurity",
-        image:
-          "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200",
-        short_description:
-          "New generation cybersecurity strategies for digital protection.",
-        link: "#",
-      },
-      {
-        topic: "Digital Policy",
-        image:
-          "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200",
-        short_description:
-          "Understanding digital governance and policy transformation.",
-        link: "#",
-      },
-    ]);
+    const loadPublicationSlider = async () => {
+      try {
+        setLoading(true);
+        const result = await getPublication();
+        console.log("RESULT 👉", result);
+        setData(result.data);
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadPublicationSlider();
   }, []);
 
   // AUTOPLAY
