@@ -74,6 +74,16 @@ export const getPublication = async (page = 1) => {
 }
 
 
+export const getPublicationHome = async () => {
+  const res = await fetch (`${BASE_URL}/latest-publication-data`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const json = await res.json();
+  return json.data;
+}
+
+
 
 
 export const fetchVideos = async () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { getPublication } from "../../services/api";
+import { getPublicationHome } from "../../services/api";
 
 export default function LatestPublicationSlider() {
   const [data, setData] = useState([]);
@@ -11,7 +11,7 @@ export default function LatestPublicationSlider() {
     const loadPublicationSlider = async () => {
       try {
         setLoading(true);
-        const result = await getPublication();
+        const result = await getPublicationHome();
         console.log("RESULT 👉", result);
         setData(result.data);
       } catch (error) {
@@ -88,12 +88,17 @@ export default function LatestPublicationSlider() {
                     </p>
 
                     {/* LINK */}
-                    <a
-                      href={item.link}
-                      className="inline-block text-navy font-semibold hover:underline"
-                    >
-                      Read Full Publication →
-                    </a>
+                      {/* LINK */}
+                        {item.pdf && item.pdf !== "#" && (
+                         <a
+                         href={item.pdf}         
+                         className="inline-block text-navy font-semibold hover:underline"
+                         target="_blank"          
+                         rel="noopener noreferrer" 
+                         >
+                        Read Full Publication →
+                        </a>
+                     )}
                   </div>
                 </div>
               </div>
