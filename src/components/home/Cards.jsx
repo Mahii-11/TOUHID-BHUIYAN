@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { getCards } from "../../services/api";
 import { Link } from "react-router";
 
+
 export default function Cards() {
 
    const [cards, setCards] = useState([]);
@@ -19,6 +20,7 @@ export default function Cards() {
         id: card.id,
         title: card.title,
         buttonText: card.buttonText,
+        slug: card.slug,
         items: card.short_description
           .split("\n")
           .map((i) => i.trim())
@@ -60,11 +62,13 @@ export default function Cards() {
                          </ul>
                       </CardContent>
                       <CardFooter className="pb-8 pt-0 flex justify-center">
-                        <Link to="/capabilities">
-                          <Button className="bg-navy hover:bg-navy-light text-white w-full rounded-sm cursor-pointer">
-                            {card.buttonText} &gt;
-                          </Button>
-                        </Link>
+                       <Link
+                         to={`/capabilities/${card.slug}`} // dynamic URL
+                       >
+                      <Button className="bg-navy hover:bg-navy-light text-white w-full rounded-sm cursor-pointer">
+                       {card.buttonText} &gt;
+                     </Button>
+                     </Link>
                       </CardFooter>
                    </Card>
                    ))}

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Shield, BookOpen, Globe } from "lucide-react";
-import { getCards } from "../services/api";
+import { getCapabilitiesDetails } from "../services/api";
 import { useEffect, useState } from "react";
 import CapabilitiesDetailsSkeleton from "../loaders/CapabilitiesDetailsSkeleton";
+import { useParams } from "react-router";
 
 
    const iconMap = {
@@ -13,36 +14,40 @@ import CapabilitiesDetailsSkeleton from "../loaders/CapabilitiesDetailsSkeleton"
 
 
 export default function CapabilitiesDetails() {
+    const { slug } = useParams();
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     
-      useEffect(() => {
-      const loadCards = async () => {
-        try {
-          setLoading(true);  
-          const res = await getCards();  
-          const formatted = res.map((card) => ({
-            id: card.id,
-            title: card.title,
-            icon: iconMap[card.title],
-            short_description: card.short_description
-            ?.split("\n")
-            .map((i) => i.trim())
-            .filter(Boolean),
+        useEffect(() => {
+  const loadCards = async () => {
+    if (!slug) return;
 
-           long_description: card.long_description?.trim(),
-          }));
-    
-          setCards(formatted);
-        } catch (error) {
-          console.error(error);
-        } finally {
-            setLoading(false);
-        }
+    try {
+      setLoading(true);  
+      const res = await getCapabilitiesDetails(slug);  
+      if (!res) return;
+
+      const formatted = {
+        id: res.id,
+        title: res.title,
+        icon: iconMap[res.title],
+        short_description: res.short_description
+          ?.split("\n")
+          .map((i) => i.trim())
+          .filter(Boolean),
+        long_description: res.long_description?.trim(),
       };
-    
-      loadCards();
-    }, []);
+
+      setCards([formatted]); // wrap in array for map in JSX
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadCards();
+}, [slug]);
 
     if (loading) return <CapabilitiesDetailsSkeleton />;
 

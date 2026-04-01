@@ -36,6 +36,30 @@ export const getCards = async () => {
   }
 };
 
+
+
+export const getCapabilitiesDetails = async (slug) => {
+  try {
+    if (!slug) throw new Error("Slug is required for capabilities details");
+
+    const res = await fetch(`${BASE_URL}/expertise-details-data/${slug}`); 
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Request failed: ${res.status} - ${errorText}`);
+    }
+    const json = await res.json();
+
+    // Return single object
+    return json?.data ?? null;
+  } catch (error) {
+    console.error(`Error fetching capability details:`, error);
+    return null;
+  }
+};
+
+
+
+
 export const getHeroData = () => {
   return fetchData(`${BASE_URL}/slider-data`);
 };

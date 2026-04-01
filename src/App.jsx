@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <ResearchTable />
       },
       {
-        path: "capabilities",
+        path: "/capabilities/:slug",
         element: <CapabilitiesDetails />
       }
     ]
