@@ -99,18 +99,25 @@ export default function VideoSlider() {
   }, []);
 
   return (
+    <>
+    <div className="px-4 py-12">
+        <h2 className="text-[#0B1D2A] text-3xl md:text-4xl font-bold text-center mb-8 tracking-wide">
+      🎬 Media Gallery
+     </h2>
+   
     <div className="relative bg-[#0B1D2A] py-8 px-6 overflow-hidden">
-      {/* Title */}
+      {/* Title 
       <h2 className="text-white text-3xl font-semibold mb-6">
         Featured Videos
       </h2>
+      */}
 
       {/* Gradient edges */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#0B1D2A] to-transparent z-10" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#0B1D2A] to-transparent z-10" />
 
       {/* Horizontal scroll container */}
-      <div className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4">
+      <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 no-scrollbar">
         {loading
           ? Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)
           : videos.map((item) => {
@@ -158,5 +165,8 @@ export default function VideoSlider() {
       {/* Modal */}
       <VideoModal video={activeVideo} onClose={() => setActiveVideo(null)} />
     </div>
+
+     </div>
+    </>
   );
 }
