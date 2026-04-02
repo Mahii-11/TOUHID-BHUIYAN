@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 
@@ -11,9 +12,11 @@ export default function CallToAction() {
                <Button className="bg-gold hover:bg-yellow-600 text-navy font-bold px-8 py-6 text-lg rounded-sm w-full md:w-auto">
                   Request a Talk
                </Button>
-               <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-sm w-full md:w-auto">
+               <Link to="/contact">
+                 <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-sm w-full md:w-auto">
                   contact us  &gt;
                </Button>
+               </Link>
             </div>
          </div>
       </section>

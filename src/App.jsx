@@ -3,6 +3,7 @@ import AppLayout from "./layout/AppLayout"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import ResearchTable from "./pages/ResearchTable";
 import CapabilitiesDetails from "./pages/CapabilitiesDetails";
+import ContactPage from "./pages/ContactPage";
 
 
 const router = createBrowserRouter([
@@ -21,7 +22,12 @@ const router = createBrowserRouter([
       {
         path: "/capabilities/:slug",
         element: <CapabilitiesDetails />
-      }
+      },
+
+       {
+         path: "/contact",
+         element: <ContactPage />,
+       },
     ]
   }
 

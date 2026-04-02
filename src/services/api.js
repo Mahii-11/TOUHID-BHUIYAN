@@ -121,3 +121,24 @@ export const fetchVideos = async () => {
     return [];
   }
 };
+
+
+
+
+//post request for contact form
+export const submitContactForm = async (formData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/store-contact`,
+      {
+        method: "POST",
+        body: formData, 
+      }
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
