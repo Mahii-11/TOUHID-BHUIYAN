@@ -62,16 +62,17 @@ export default function CapabilitiesDetails() {
       {/* Timeline line */}
       <div className="hidden md:block absolute left-1/2 top-40 w-[2px] h-[calc(100%-10rem)] bg-gradient-to-b from-transparent via-[#0B1E33]/40 to-transparent" />
 
-      {/* Hero */}
+      {/* Hero
       <div className="text-center mb-20">
         <h1 className="text-3xl md:text-5xl font-bold text-[#0B1E33] mb-4">
-          Core Capabilities
+        Core Capabilities
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           A comprehensive overview of expertise, research, and impact across multiple domains.
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-[#0B1E33] to-[#163A5F] mx-auto mt-6 rounded-full" />
       </div>
+      */}
 
       {/* Sections */}
       <div className="space-y-28 max-w-6xl mx-auto">

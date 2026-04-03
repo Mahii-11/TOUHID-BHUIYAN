@@ -16,7 +16,7 @@ export default function PremiumNavbar() {
   { name: "About", path: "/about" },
   { name: "Research & Innovation", path: "/research" },
   { name: "Policy & Governance", path: "/policy" },
-  { name: "Cybersecurity Practice", path: "/cybersecurity" },
+  { name: "Cybersecurity Practice", path: "capabilities/cybersecurity-specialist" },
   { name: "Social Impact", path: "/social-impact" },
   { name: "Newsroom/Media", path: "/news" },
 ];

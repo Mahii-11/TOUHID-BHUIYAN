@@ -3,8 +3,33 @@ import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { Link } from "react-router";
 import { FaLinkedin, FaTwitter, FaFacebook, FaGithub } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { getSettings } from "../services/api";
 
 export const FooterSection = () => {
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const res = await getSettings()
+        setData(res)
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+    fetchData();
+  }, [])
+
+
+
+
+
+
+
+
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -45,14 +70,12 @@ export const FooterSection = () => {
             <div className="flex items-start gap-3 mb-4">
               <div className="w-1 h-8 bg-yellow-500 rounded-full" />
               <h3 className="text-2xl font-bold tracking-wide">
-                Prof. Touhid Bhuiyan
+                {data.name}
               </h3>
             </div>
 
             <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
-              Professor in Cybersecurity & AI Governance. Focused on advanced 
-              research, innovation, and real-world impact through intelligent 
-              systems and secure technologies.
+             {data.description}
             </p>
 
             {/* 🔥 Social Icons */}
