@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaShieldAlt } from "react-icons/fa";
 import { Link } from "react-router";
+import { getSettings } from "../services/api";
+import NavbarProfileSkeleton from "../loaders/NavbarProfileSkeleton";
 
 export default function PremiumNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [nav, setNav] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
  const navLinks = [
   { name: "Home", path: "/" },
@@ -16,11 +21,35 @@ export default function PremiumNavbar() {
   { name: "Newsroom/Media", path: "/news" },
 ];
 
+
+ useEffect(() => {
+    const fetchNav = async () => {
+      try {
+        setLoading(true);
+        const res = await getSettings ();
+        setNav(res);
+      } catch (error) {
+        console.error("Error fetching navigation data:", error);
+      } finally {
+        setLoading(false);
+      }
+    } 
+    fetchNav();
+  }, []);
+
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+
+   if (loading) {
+    return (
+      <NavbarProfileSkeleton />
+    )
+  }
 
   return (
     <>
@@ -47,18 +76,18 @@ export default function PremiumNavbar() {
             <div className="relative flex-shrink-0">
               <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#c9a84c] via-[#f5d98a] to-[#c9a84c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
               <img
-                src="/images/touhid-01.png"
-                alt="Prof. Touhid Bhuiyan"
+                src={nav.logo}
+                alt={nav.name}
                 className="relative w-11 h-11 rounded-full border-2 border-[#c9a84c]/60 object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h1 className="text-[0.88rem] font-bold tracking-wide text-white uppercase font-['Playfair_Display'] whitespace-nowrap">
-                Prof. Touhid Bhuiyan, PhD
+                {nav.name}
               </h1>
               <span className="text-[#c9a84c]/40 text-xs hidden md:inline">|</span>
               <p className="text-[0.68rem] text-[#c9a84c]/80 uppercase tracking-[0.12em] font-medium whitespace-nowrap hidden md:block">
-                Professor · Cybersecurity & AI Governance
+                {nav.note}
               </p>
             </div>
           </div>

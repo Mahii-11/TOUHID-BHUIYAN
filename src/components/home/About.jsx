@@ -1,5 +1,27 @@
+import { useEffect, useState } from "react"
+import { getSettings } from "../../services/api";
 
 export default function About() {
+   const [des, setDes] = useState([]);
+   
+
+   useEffect(() => {
+      const loadDes = async () => {
+         try {
+            const res = await getSettings();
+            setDes(res);
+         } catch (error) {
+            console.error("Error fetching setting:", error);
+         }
+      }
+      loadDes();
+   }, [])
+
+
+
+
+
+
   return (
     <section className="bg-white py-16 md:py-24 border-b border-gray-100">
             <div className="container mx-auto px-6 md:px-12">
@@ -9,12 +31,9 @@ export default function About() {
                      <div className="h-1 w-20 bg-gold"></div>
                      
                      <div className="text-gray-600 space-y-4 leading-relaxed text-lg">
-                        <p>
-                           Professor at Washington University of Science and Technology (WUST), USA, specializing in Cybersecurity, Artificial Intelligence, and Digital Governance.
-                        </p>
-                        <p>
-                           PhD in Computer Science from Queensland University of Technology, Australia.
-                        </p>
+                         {des?.description?.split("\r\n\r\n").map((para, index) => (
+                         <p key={index}>{para}</p>
+                         ))}
                      </div>
 
                          <div className="pt-4">

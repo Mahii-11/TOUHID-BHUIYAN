@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { getSocialImpactData } from "../../services/api";
 import SocialImpactSkeleton from "../../loaders/SocialImpactSkeleton";
+import { useNavigate } from "react-router";
 
 const iconMap = {
   "Capacity Building": IoMdSchool,
@@ -16,6 +17,7 @@ const iconMap = {
 export default function SocialImpact() {
   const [impacts, setImpacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadImpacts = async () => {
@@ -85,7 +87,7 @@ export default function SocialImpact() {
 
         {/* CTA */}
         <div className="flex justify-center mt-12">
-          <Button className="bg-navy hover:bg-navy-light text-white px-8 py-6 text-base rounded-sm shadow-xl hover:scale-105 transition-all duration-300">
+          <Button   onClick={() => navigate("/social-impact")} className="bg-navy hover:bg-navy-light text-white px-8 py-6 text-base rounded-sm shadow-xl hover:scale-105 transition-all duration-300">
             Visit Newsroom &gt;
           </Button>
         </div>
