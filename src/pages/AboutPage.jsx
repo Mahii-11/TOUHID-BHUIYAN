@@ -1,5 +1,5 @@
 import AboutSection from "../components/about/AboutSection";
-import { ExperienceSection } from "../components/about/ExperienceSection";
+import  {ExperienceSection}  from "../components/about/ExperienceSection";
 import PortfolioSections from "../components/about/PortfolioSections";
 
 

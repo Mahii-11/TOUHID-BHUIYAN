@@ -127,7 +127,7 @@ function ExperienceCard({ item, side }) {
   );
 }
 
-export function ExperienceTimeline() {
+export function ExperienceSection() {
   return (
     <div
       className="min-h-screen w-full"
