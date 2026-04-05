@@ -43,72 +43,72 @@ function ExperienceCard({ item, side }) {
       className={`flex items-center w-full ${side === "left" ? "flex-row-reverse" : "flex-row"} gap-0`}
     >
       {/* Card */}
-      <div className="w-[42%] flex-shrink-0">
-        <div
-          className={`relative rounded-2xl p-5 cursor-default group/card transition-all duration-300 ${side === "left" ? "mr-0" : "ml-0"}`}
+      <div className="w-[77%] flex-shrink-0">
+  <div
+    className={`relative rounded-2xl p-5 cursor-default group/card transition-all duration-300 ${side === "left" ? "mr-0" : "ml-0"}`}
+    style={{
+      background: "rgba(255,255,255,0.04)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      boxShadow: "0 4px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)",
+      transition: "all 0.3s ease",
+    }}
+    onMouseEnter={(e) => {
+      const el = e.currentTarget; // <-- remove `as HTMLDivElement`
+      el.style.transform = "scale(1.05)";
+      el.style.background = `rgba(${item.color === "#a855f7" ? "168,85,247" : "59,130,246"},0.1)`;
+      el.style.border = `1px solid ${item.color}55`;
+      el.style.boxShadow = `0 12px 48px ${item.color}33, inset 0 1px 0 rgba(255,255,255,0.1)`;
+    }}
+    onMouseLeave={(e) => {
+      const el = e.currentTarget; // <-- remove `as HTMLDivElement`
+      el.style.transform = "scale(1)";
+      el.style.background = "rgba(255,255,255,0.04)";
+      el.style.border = "1px solid rgba(255,255,255,0.08)";
+      el.style.boxShadow =
+        "0 4px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)";
+    }}
+  >
+    {/* Top row: icon badge + role */}
+    <div className="flex items-start gap-3 mb-3">
+      <div
+        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+        style={{
+          background: `${item.color}22`,
+          border: `1px solid ${item.color}44`,
+          boxShadow: `0 0 12px ${item.color}33`,
+        }}
+      >
+        <Icon size={16} style={{ color: item.color }} />
+      </div>
+      <div className="flex flex-col">
+        <h3 className="text-white font-bold text-base leading-tight">{item.role}</h3>
+        <p
+          className="text-sm font-semibold mt-0.5 leading-tight whitespace-nowrap"
           style={{
-            background: "rgba(255,255,255,0.04)",
-            backdropFilter: "blur(14px)",
-            WebkitBackdropFilter: "blur(14px)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)",
-            transition: "all 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            const el = e.currentTarget;
-            el.style.transform = "scale(1.05)";
-            el.style.background = `rgba(${item.color === "#a855f7" ? "168,85,247" : "59,130,246"},0.1)`;
-            el.style.border = `1px solid ${item.color}55`;
-            el.style.boxShadow = `0 12px 48px ${item.color}33, inset 0 1px 0 rgba(255,255,255,0.1)`;
-          }}
-          onMouseLeave={(e) => {
-            const el = e.currentTarget;
-            el.style.transform = "scale(1)";
-            el.style.background = "rgba(255,255,255,0.04)";
-            el.style.border = "1px solid rgba(255,255,255,0.08)";
-            el.style.boxShadow =
-              "0 4px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)";
+            background: `linear-gradient(90deg, ${item.color}, ${item.color === "#a855f7" ? "#3b82f6" : "#a855f7"})`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
-          {/* Top row: icon badge + role */}
-          <div className="flex items-start gap-3 mb-3">
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-              style={{
-                background: `${item.color}22`,
-                border: `1px solid ${item.color}44`,
-                boxShadow: `0 0 12px ${item.color}33`,
-              }}
-            >
-              <Icon size={16} style={{ color: item.color }} />
-            </div>
-            <div className="flex flex-col">
-              <h3 className="text-white font-bold text-base leading-tight">{item.role}</h3>
-              <p
-                className="text-sm font-semibold mt-0.5 leading-tight"
-                style={{
-                  background: `linear-gradient(90deg, ${item.color}, ${item.color === "#a855f7" ? "#3b82f6" : "#a855f7"})`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {item.org}
-              </p>
-              {item.sub && (
-                <p className="text-slate-500 text-xs mt-1">{item.sub}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Bottom accent line */}
-          <div
-            className="h-0.5 rounded-full mt-2 opacity-30"
-            style={{
-              background: `linear-gradient(90deg, ${item.color}, transparent)`,
-            }}
-          />
-        </div>
+          {item.org}
+        </p>
+        {item.sub && (
+          <p className="text-slate-500 text-xs mt-1">{item.sub}</p>
+        )}
       </div>
+    </div>
+
+    {/* Bottom accent line */}
+    <div
+      className="h-0.5 rounded-full mt-2 opacity-30"
+      style={{
+        background: `linear-gradient(90deg, ${item.color}, transparent)`,
+      }}
+    />
+  </div>
+</div>
 
       {/* Branch connector */}
       <div className="flex-1 relative flex items-center">
@@ -190,7 +190,7 @@ export function ExperienceSection() {
                           <ExperienceCard item={item} side="left" />
                         </div>
                       ) : (
-                        <div className="w-[10%] flex items-center">
+                        <div className="w-[20%] flex items-center">
                           <div
                             className="w-full h-0.5"
                             style={{
