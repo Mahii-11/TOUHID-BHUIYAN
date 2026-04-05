@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getSettings } from "../../services/api";
+import { Link } from "react-router";
 
 export default function About() {
    const [des, setDes] = useState([]);
@@ -42,7 +43,9 @@ export default function About() {
                 {/* Shine effect */}
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>
 
-                <span className="relative">View More</span>
+                <Link to="/about">
+                   <span className="relative">View More</span>
+                </Link>
 
                 {/* Arrow */}
                 <svg

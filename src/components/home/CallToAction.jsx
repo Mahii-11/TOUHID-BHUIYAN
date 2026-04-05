@@ -9,19 +9,27 @@ export default function CallToAction() {
             <h3 className="text-2xl md:text-3xl font-serif italic mb-8">Invite Prof. Touhid Bhuiyan to Speak, Advise, or Collaborate.</h3>
             
             <div className="flex flex-col md:flex-row justify-center gap-6">
-               <Button className="bg-gold hover:bg-yellow-600 text-navy font-bold px-8 py-6 text-lg rounded-sm w-full md:w-auto">
-                  Request a Talk
-               </Button>
                <Link to="/contact">
-                 <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-sm w-full md:w-auto">
-                  contact us  &gt;
+               <Button className="bg-gold hover:bg-yellow-600 text-navy font-bold px-8 py-6 text-lg rounded-sm w-full md:w-auto">
+                    contact us  &gt;
                </Button>
-               </Link>
+            </Link>
             </div>
          </div>
       </section>
   )
 }
+
+
+
+
+{/*  
+   
+<Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-sm w-full md:w-auto">
+                  contact us  &gt;
+               </Button>   
+   
+*/}
 
 
  

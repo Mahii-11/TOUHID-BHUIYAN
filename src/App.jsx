@@ -5,6 +5,7 @@ import ResearchTable from "./pages/ResearchTable";
 import CapabilitiesDetails from "./pages/CapabilitiesDetails";
 import ContactPage from "./pages/ContactPage";
 import SocialImpactPage from "./pages/SocialImpactPage";
+import AboutPage from "./pages/AboutPage";
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />
+      },
+      {
+        path: "/about",
+        element: <AboutPage />
+
       },
 
       {
@@ -30,10 +36,10 @@ const router = createBrowserRouter([
          element: <ContactPage />,
        },
 
-         {
-    path: "/social-impact",
-    element: <SocialImpactPage />,
-  },
+         {  
+           path: "/social-impact",
+           element: <SocialImpactPage />,
+        },
     ]
   }
 
