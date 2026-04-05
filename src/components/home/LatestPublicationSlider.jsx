@@ -188,7 +188,54 @@ export default function LatestPublicationSlider() {
                     {/* NAV */}
                     <div className="flex items-center gap-3 pt-3">
 
-                      <button
+                    
+
+                      <div className="flex items-center gap-1.5 ml-1">
+                        {data.map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setCurrent(i)}
+                            className="rounded-full transition-all duration-300"
+                            style={{
+                              width:
+                                current === i ? "1.4rem" : "0.4rem",
+                              height: "0.4rem",
+                              background:
+                                current === i
+                                  ? "#0b0f2a"
+                                  : "rgba(11,15,42,0.15)",
+                            }}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="ml-auto text-xs font-semibold tabular-nums text-slate-400">
+                        {String(current + 1).padStart(2, "0")}
+                        <span className="mx-1 text-slate-300">/</span>
+                        {String(data.length).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+
+
+{
+
+  /*   
+  
+    <button
                         onClick={() =>
                           setCurrent((prev) =>
                             prev === 0 ? data.length - 1 : prev - 1
@@ -245,42 +292,6 @@ export default function LatestPublicationSlider() {
                       >
                         <ChevronRight size={15} />
                       </button>
-
-                      <div className="flex items-center gap-1.5 ml-1">
-                        {data.map((_, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setCurrent(i)}
-                            className="rounded-full transition-all duration-300"
-                            style={{
-                              width:
-                                current === i ? "1.4rem" : "0.4rem",
-                              height: "0.4rem",
-                              background:
-                                current === i
-                                  ? "#0b0f2a"
-                                  : "rgba(11,15,42,0.15)",
-                            }}
-                          />
-                        ))}
-                      </div>
-
-                      <span className="ml-auto text-xs font-semibold tabular-nums text-slate-400">
-                        {String(current + 1).padStart(2, "0")}
-                        <span className="mx-1 text-slate-300">/</span>
-                        {String(data.length).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
+  
+  */
 }
