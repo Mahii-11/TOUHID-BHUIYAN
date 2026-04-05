@@ -6,6 +6,7 @@ import CapabilitiesDetails from "./pages/CapabilitiesDetails";
 import ContactPage from "./pages/ContactPage";
 import SocialImpactPage from "./pages/SocialImpactPage";
 import AboutPage from "./pages/AboutPage";
+import VideoGrid from "./pages/VideoGrid";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
            path: "/social-impact",
            element: <SocialImpactPage />,
         },
+
+        {
+          path: "/media",
+          element: <VideoGrid />
+        }
     ]
   }
 
