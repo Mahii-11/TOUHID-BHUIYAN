@@ -11,6 +11,7 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    email: "",
     message: "",
   });
 
@@ -54,6 +55,7 @@ export default function ContactPage() {
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("phone", form.phone);
+      formData.append("email", form.email);
       formData.append("message", form.message);
 
       const res = await submitContactForm(formData);
@@ -110,6 +112,15 @@ export default function ContactPage() {
             value={form.phone}
             onChange={handleChange}
             placeholder="Phone Number"
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-[#0B1F3A]"
+          />
+
+           <input
+            type="text"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Email Address"
             className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-[#0B1F3A]"
           />
 

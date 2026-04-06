@@ -7,6 +7,8 @@ import ContactPage from "./pages/ContactPage";
 import SocialImpactPage from "./pages/SocialImpactPage";
 import AboutPage from "./pages/AboutPage";
 import VideoGrid from "./pages/VideoGrid";
+import PolicyGovernance from "./pages/PolicyGovernance";
+
 
 
 const router = createBrowserRouter([
@@ -45,7 +47,12 @@ const router = createBrowserRouter([
         {
           path: "/media",
           element: <VideoGrid />
-        }
+        },
+
+        {
+          path: "/policy",
+          element: < PolicyGovernance />
+        },
     ]
   }
 

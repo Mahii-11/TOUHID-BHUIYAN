@@ -4,8 +4,8 @@ import Cards from "../components/home/Cards";
 import StatsSection from "../components/home/StatsSection";
 import SocialImpact from "../components/home/SocialImpact";
 import CallToAction from "../components/home/CallToAction";
-import LatestPublicationSlider from "../components/home/LatestPublicationSlider";
 import VideoSlider from "../components/home/VideoSlider";
+import LatestPublicationPro from "../components/home/LatestPublicationPro";
 
 
 
@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
       <About />
       <Cards />
-      <LatestPublicationSlider/>
+      <LatestPublicationPro />
       <VideoSlider/>
       <StatsSection />
       <SocialImpact/>

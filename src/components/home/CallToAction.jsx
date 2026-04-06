@@ -1,12 +1,32 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
+import { getSettings } from "../../services/api";
 
 
 export default function CallToAction() {
+   const [data, setData] = useState([]);
+   useEffect(() => {
+      const fetchData = async () => {
+         try {
+            const res = await getSettings();
+            setData(res);
+         } catch (error) {
+            console.error("Error fetching settings:", error);
+         }
+      }
+      fetchData();
+
+   }, []);
+
+
+
+
+
   return (
     <section className="bg-navy text-white py-16 border-b border-white/10">
          <div className="container mx-auto px-6 md:px-12 text-center">
-            <h3 className="text-2xl md:text-3xl font-serif italic mb-8">Invite Prof. Touhid Bhuiyan to Speak, Advise, or Collaborate.</h3>
+            <h3 className="text-2xl md:text-3xl font-serif italic mb-8">{data.speech}</h3>
             
             <div className="flex flex-col md:flex-row justify-center gap-6">
                <Link to="/contact">

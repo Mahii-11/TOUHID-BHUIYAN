@@ -1,39 +1,37 @@
 import { Briefcase, GraduationCap, Shield, Globe } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getProfessionalExperiences } from "../../services/api";
 
-const experiences = [
-  {
-    id: 1,
-    role: "Professor",
-    org: "Washington University",
-    sub: "USA | Present",
-    icon: GraduationCap,
-    color: "#a855f7",
-  },
-  {
-    id: 2,
-    role: "Director",
-    org: "Cyber Security Center",
-    sub: "Bangladesh",
-    icon: Shield,
-    color: "#3b82f6",
-  },
-  {
-    id: 3,
-    role: "Head of Dept.",
-    org: "CSE / SWE Daffodil Int'l University",
-    sub: "Bangladesh",
-    icon: Briefcase,
-    color: "#a855f7",
-  },
-  {
-    id: 4,
-    role: "Researcher & Academic Contributor",
-    org: "Global",
-    sub: null,
-    icon: Globe,
-    color: "#3b82f6",
-  },
-];
+const iconMap = {
+  professor: GraduationCap,
+  director: Shield,
+  head: Briefcase,
+  researcher: Globe,
+  upcoming: Briefcase,
+};
+
+const colorMap = {
+  professor: "#a855f7",
+  director: "#3b82f6",
+  head: "#a855f7",
+  researcher: "#3b82f6",
+  upcoming: "#a855f7"
+};
+
+
+const normalizeExperiences = (data) => {
+  return data.map((item, index) => {
+    const key = item.icon?.toLowerCase() || "";
+    return {
+      id: item.id || index,
+      role: item.role,
+      org: item.organization,
+      sub: item.sub,
+      icon: iconMap[key] || Briefcase,
+      color: colorMap[key] || "#a855f7",
+    };
+  });
+};
 
 function ExperienceCard({ item, side }) {
   const Icon = item.icon;
@@ -128,6 +126,40 @@ function ExperienceCard({ item, side }) {
 }
 
 export function ExperienceSection() {
+   const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await getProfessionalExperiences();
+
+        const rawData = res?.data || [];
+
+        const normalized = normalizeExperiences(rawData);
+
+        setExperiences(normalized);
+      } catch (error) {
+        console.error("Experience fetch error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+
+  if (loading) {
+  return (
+    <div className="text-white text-center py-20">
+      Loading experiences...
+    </div>
+  );
+}
+
+
+
   return (
     <div
       className="min-h-screen w-full"

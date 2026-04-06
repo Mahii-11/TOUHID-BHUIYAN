@@ -73,6 +73,10 @@ export const getSocialImpactData = () => {
   return fetchData(`${BASE_URL}/services-data`);
 }
 
+export const getProfessionalExperiences = () => {
+  return fetchData(`${BASE_URL}/professional-experiences`);
+}
+
 
 export const getSocialMediaIcon = () => {
   return fetchData(`${BASE_URL}/social-data`);
