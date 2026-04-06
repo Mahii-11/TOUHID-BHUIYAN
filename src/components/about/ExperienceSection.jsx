@@ -1,6 +1,7 @@
 import { Briefcase, GraduationCap, Shield, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getProfessionalExperiences } from "../../services/api";
+import ExperienceSkeleton from "../../loaders/ExperienceSkeleton";
 
 const iconMap = {
   professor: GraduationCap,
@@ -152,9 +153,7 @@ export function ExperienceSection() {
 
   if (loading) {
   return (
-    <div className="text-white text-center py-20">
-      Loading experiences...
-    </div>
+   <ExperienceSkeleton />
   );
 }
 
@@ -350,4 +349,26 @@ export function ExperienceSection() {
       </section>
     </div>
   );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  /* 
+  
+  const experiences = [ { id: 1, role: "Professor", org: "Washington University", sub: "USA | Present", icon: GraduationCap, color: "#a855f7", }, { id: 2, role: "Director", org: "Cyber Security Center", sub: "Bangladesh", icon: Shield, color: "#3b82f6", }, { id: 3, role: "Head of Dept.", org: "CSE / SWE Daffodil Int'l University", sub: "Bangladesh", icon: Briefcase, color: "#a855f7", }, { id: 4, role: "Researcher & Academic Contributor", org: "Global", sub: null, icon: Globe, color: "#3b82f6", }, ];
+  
+  */
+
+
+
 }

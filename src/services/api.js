@@ -78,6 +78,16 @@ export const getProfessionalExperiences = () => {
 }
 
 
+export const getAchievementsAwards = () => {
+  return fetchData(`${BASE_URL}/awards-data`);
+}
+
+
+export const getDegrees = () => {
+  return fetchData(`${BASE_URL}/education-data`);
+}
+
+
 export const getSocialMediaIcon = () => {
   return fetchData(`${BASE_URL}/social-data`);
 }

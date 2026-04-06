@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   FaGraduationCap,
   FaBrain,
@@ -6,47 +7,75 @@ import {
   FaGlobe,
   FaMicroscope,
 } from "react-icons/fa";
+import { getDegrees } from "../../services/api";
+import DegreesSkeleton from "../../loaders/DegreesSkeleton";
 
-const degrees = [
-  {
-    degree: "PhD in Computer Science",
-    university: "Massachusetts Institute of Technology",
-    year: "2015",
-    icon: FaGraduationCap,
-  },
-  {
-    degree: "MSc in Artificial Intelligence",
-    university: "Stanford University",
-    year: "2011",
-    icon: FaBrain,
-  },
-  {
-    degree: "BSc in Mathematics & CS",
-    university: "University of California, Berkeley",
-    year: "2009",
-    icon: FaFlask,
-  },
-  {
-    degree: "Postdoctoral Research",
-    university: "Carnegie Mellon University",
-    year: "2017",
-    icon: FaMicroscope,
-  },
-  {
-    degree: "Visiting Scholar",
-    university: "Oxford University",
-    year: "2019",
-    icon: FaGlobe,
-  },
-  {
-    degree: "Research Fellowship",
-    university: "Max Planck Institute",
-    year: "2016",
-    icon: FaUniversity,
-  },
-];
+const iconMap = {
+  phd: FaGraduationCap,
+  msc: FaBrain,
+  bsc: FaFlask,
+  postdoctoral: FaMicroscope,
+  scholar: FaGlobe,
+  fellowship: FaUniversity,
+
+  // fallback
+  default: FaGraduationCap,
+};
+
+const normalizeDegrees = (data) => {
+  return data.map((item, index) => {
+    const key =
+      item.icon?.toLowerCase() ||
+      item.degree?.toLowerCase() ||
+      "default";
+
+    return {
+      id: item.id || index,
+      degree: item.degree,
+      university: item.university,
+      year: item.year,
+      icon: iconMap[key] || iconMap.default,
+    };
+  });
+};
 
 export default function DegreesSection() {
+  const [degrees, setDegrees] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await getDegrees();
+
+        const rawData = res?.data || [];
+
+        const normalized = normalizeDegrees(rawData);
+
+        setDegrees(normalized);
+      } catch (error) {
+        console.error("Degrees fetch error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+
+  if (loading) {
+  return (
+    <section className="px-6 py-20 md:px-16 lg:px-24">
+      <div className="max-w-6xl mx-auto">
+        <DegreesSkeleton />
+      </div>
+    </section>
+  );
+}
+
+
+
   return (
     <section className="px-6 py-20 md:px-16 lg:px-24">
       <div className="max-w-6xl mx-auto">

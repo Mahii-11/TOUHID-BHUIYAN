@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   FaTrophy,
   FaMedal,
@@ -5,51 +6,76 @@ import {
   FaAward,
   FaCertificate,
 } from "react-icons/fa";
+import { getAchievementsAwards } from "../../services/api";
+import AchievementsSkeleton from "../../loaders/AchievementsSkeleton";
 
-const achievements = [
-  {
-    title: "Best Research Award",
-    organization: "IEEE International Conference on AI",
-    year: "2024",
-    description:
-      "Recognized for groundbreaking contributions in neural architecture search and efficient deep learning systems.",
-    icon: <FaTrophy className="w-5 h-5" />,
-  },
-  {
-    title: "NSF CAREER Award",
-    organization: "National Science Foundation",
-    year: "2022",
-    description:
-      "Awarded for outstanding early-career research in human-computer interaction and adaptive AI interfaces.",
-    icon: <FaAward className="w-5 h-5" />,
-  },
-  {
-    title: "Outstanding Reviewer Award",
-    organization: "NeurIPS 2023",
-    year: "2023",
-    description:
-      "Honored for exceptional peer review contributions and advancing research quality in machine learning.",
-    icon: <FaCertificate className="w-5 h-5" />,
-  },
-  {
-    title: "Best Paper Award",
-    organization: "ACM SIGCHI Conference",
-    year: "2021",
-    description:
-      "First-place recognition for pioneering work on explainable AI and transparent model decision-making.",
-    icon: <FaMedal className="w-5 h-5" />,
-  },
-  {
-    title: "Google Faculty Research Award",
-    organization: "Google Research",
-    year: "2020",
-    description:
-      "Competitive award supporting research on scalable graph neural networks for real-world applications.",
-    icon: <FaStar className="w-5 h-5" />,
-  },
-];
+
+const iconMap = {
+  trophy: <FaTrophy className="w-5 h-5" />,
+  award: <FaAward className="w-5 h-5" />,
+  certificate: <FaCertificate className="w-5 h-5" />,
+  medal: <FaMedal className="w-5 h-5" />,
+  star: <FaStar className="w-5 h-5" />,
+  default: <FaAward className="w-5 h-5" />,
+};
+
+
+
+
+const normalizeAchievements = (data) => {
+  return data.map((item, index) => {
+    const key =
+      item.icon?.toLowerCase() ||
+      item.title?.toLowerCase() ||
+      "default";
+
+    return {
+      id: item.id || index,
+      title: item.title,
+      organization: item.organization,
+      year: item.year,
+      description: item.description,
+      icon: iconMap[key] || iconMap.default,
+    };
+  });
+};
 
 export default function AchievementsSection() {
+  const [achievements, setAchievements] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await getAchievementsAwards();
+
+        const rawData = res?.data || [];
+
+        const normalized = normalizeAchievements(rawData);
+
+        setAchievements(normalized);
+      } catch (error) {
+        console.error("Achievements fetch error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+
+  if (loading) {
+  return (
+    <section className="px-6 py-20 md:px-16 lg:px-24">
+      <div className="max-w-4xl mx-auto">
+        <AchievementsSkeleton />
+      </div>
+    </section>
+  );
+}
+
+
   return (
     <section className="px-6 py-20 md:px-16 lg:px-24">
       <div className="max-w-4xl mx-auto">
