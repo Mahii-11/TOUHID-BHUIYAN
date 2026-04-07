@@ -101,6 +101,10 @@ export const getSettings = () => {
   return fetchData(`${BASE_URL}/setting-data`);
 }
 
+export const getSocialData = () => {
+  return fetchData(`${BASE_URL}/social-data`)
+}
+
 
 export const getPublication = async (page = 1) => {
   const res = await fetch(`${BASE_URL}/publication-data?page=${page}`);

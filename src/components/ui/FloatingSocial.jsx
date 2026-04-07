@@ -1,12 +1,58 @@
-import { FaLinkedin, FaTwitter, FaFacebook, FaEnvelope } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaLinkedin, FaTwitter, FaFacebook, FaGithub } from "react-icons/fa";
+import { getSocialData } from "../../services/api";
+
+
+
+const iconMap = {
+  linkedin: FaLinkedin,
+  twitter: FaTwitter,
+  facebook: FaFacebook,
+  github: FaGithub,
+};
+
+
+const normalizeSocials = (data) => {
+  if (!Array.isArray(data)) return [];
+
+  return data.map((item) => {
+    const key = item.platform?.toLowerCase(); // important
+    const Icon = iconMap[key] || FaGithub; // fallback
+
+    return {
+      icon: <Icon />,
+      link: item.url || "#",
+    };
+  });
+};
+
+
+
+
+
+
 
 export default function FloatingSocial() {
-  const socials = [
-    { icon: <FaLinkedin />, link: "https://linkedin.com" },
-    { icon: <FaTwitter />, link: "https://twitter.com" },
-    { icon: <FaFacebook />, link: "https://facebook.com" },
-    { icon: <FaEnvelope />, link: "mailto:contact@example.com" },
-  ];
+  const [social, setSocial] = useState([]);
+  const normalizedSocials = normalizeSocials(social);
+
+
+
+   useEffect(() => {
+      const fetchSocial = async () => {
+        try {
+          const res = await getSocialData();
+          console.log("Fetched social data:", res);
+          setSocial(res?.data || []);
+        } catch (error) {
+          console.error("Error fetching social data:", error);
+        }
+      };
+  
+      fetchSocial();
+  
+    }, [])
+  
 
   return (
     <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
@@ -14,7 +60,7 @@ export default function FloatingSocial() {
       {/* Top Line */}
       <div className="w-[2px] h-16 bg-gradient-to-b from-transparent via-yellow-500 to-transparent mx-auto"></div>
 
-      {socials.map((item, index) => (
+      {normalizedSocials.map((item, index) => (
         <a
           key={index}
           href={item.link}

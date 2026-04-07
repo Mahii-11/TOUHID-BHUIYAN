@@ -4,10 +4,55 @@ import { Mail } from "lucide-react";
 import { Link } from "react-router";
 import { FaLinkedin, FaTwitter, FaFacebook, FaGithub } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { getSettings } from "../services/api";
+import { getSettings, getSocialData } from "../services/api";
+
+
+const iconMap = {
+  linkedin: FaLinkedin,
+  twitter: FaTwitter,
+  facebook: FaFacebook,
+  github: FaGithub,
+};
+
+
+const normalizeSocials = (data) => {
+  if (!Array.isArray(data)) return [];
+
+  return data.map((item) => {
+    const key = item.platform?.toLowerCase(); // important
+    const Icon = iconMap[key] || FaGithub; // fallback
+
+    return {
+      icon: <Icon />,
+      link: item.url || "#",
+    };
+  });
+};
+
+
+
+
 
 export const FooterSection = () => {
   const [data, setData] = useState([]);
+  const [social, setSocial] = useState([]);
+  const normalizedSocials = normalizeSocials(social);
+
+
+  useEffect(() => {
+    const fetchSocial = async () => {
+      try {
+        const res = await getSocialData();
+        console.log("Fetched social data:", res);
+        setSocial(res?.data || []);
+      } catch (error) {
+        console.error("Error fetching social data:", error);
+      }
+    };
+
+    fetchSocial();
+
+  }, [])
 
 
   useEffect(() => {
@@ -24,30 +69,16 @@ export const FooterSection = () => {
   }, [])
 
 
-
-
-
-
-
-
   const quickLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Research", path: "/research" },
-    { name: "Publications", path: "/research-publications" },
-    { name: "Projects", path: "/projects" },
-    { name: "Teaching", path: "/teaching" },
-    { name: "Resources", path: "/resources" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Contact", path: "/contact" },
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Research & Innovation", path: "/research" },
+  { name: "Policy & Governance", path: "/policy" },
+  { name: "Cybersecurity Practice", path: "capabilities/cybersecurity-specialist" },
+  { name: "Social Impact", path: "/social-impact" },
+  { name: "Newsroom/Media", path: "/media" },
   ];
 
-  const socials = [
-    { icon: <FaLinkedin />, link: "#" },
-    { icon: <FaTwitter />, link: "#" },
-    { icon: <FaFacebook />, link: "#" },
-    { icon: <FaGithub />, link: "#" },
-  ];
 
   return (
     <footer className="relative bg-[#071521] text-white border-t border-white/10 overflow-hidden">
@@ -80,7 +111,7 @@ export const FooterSection = () => {
 
             {/* 🔥 Social Icons */}
             <div className="flex gap-4">
-              {socials.map((item, i) => (
+              {normalizedSocials.map((item, i) => (
                 <a
                   key={i}
                   href={item.link}
