@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Shield, BookOpen, Globe } from "lucide-react";
 import { getCapabilitiesDetails } from "../services/api";
 import { useEffect, useState } from "react";
-import CapabilitiesDetailsSkeleton from "../loaders/CapabilitiesDetailsSkeleton";
 import { useParams } from "react-router";
+import CapabilitiesDetailsSkeleton from "../loaders/CapabilitiesDetailsSkeleton";
 
 
    const iconMap = {
-        "Academician": BookOpen,
+        "Best Research Award": BookOpen,
         "Cybersecurity Specialist": Shield,
         "Policy & Social Impact": Globe
     }
@@ -30,7 +30,7 @@ export default function CapabilitiesDetails() {
       const formatted = {
         id: res.id,
         title: res.title,
-        icon: iconMap[res.title],
+        icon: iconMap[res.title] || BookOpen,
         short_description: res.short_description
           ?.split("\n")
           .map((i) => i.trim())
