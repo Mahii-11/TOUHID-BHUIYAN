@@ -141,6 +141,25 @@ export const fetchVideos = async () => {
 };
 
 
+export const getMedia = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/video-gallery-data`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch media data");
+    }
+
+    const json = await res.json();
+
+    // 🔥 Safe normalization for your backend structure
+    return json?.data?.data || [];
+  } catch (error) {
+    console.error("getMedia error:", error);
+    return [];
+  }
+};
+
+
 
 
 //post request for contact form

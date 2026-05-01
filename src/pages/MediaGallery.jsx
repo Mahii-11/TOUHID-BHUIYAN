@@ -1,22 +1,50 @@
-import { useState, useMemo } from "react";
-import { videosData, categories } from "../data/videosData";
+import { useState, useMemo, useEffect } from "react";
 import { CategoryTabs } from "../components/Video/CategoryTabs";
 import { FeaturedVideo } from "../components/Video/FeaturedVideo";
 import { VideoCard } from "../components/Video/VideoCard";
 import { VideoModal } from "../components/Video/VideoModal";
 import { Monitor, Film } from "lucide-react";
+import { getMedia } from "../services/api";
+import  MediaSkeleton  from "../loaders/MediaSkeleton";
 
 export function MediaGallery() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videosData, setVideosData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredVideos = useMemo(() => {
+
+   useEffect(() => {
+    const loadMedia = async () => {
+      try {
+        const data = await getMedia();
+        setVideosData(data || []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadMedia();
+  }, []);
+  
+
+  const categories = useMemo(() => {
+    return ["All", ...new Set(videosData.map(v => v.category))];
+  }, [videosData]);
+
+ const filteredVideos = useMemo(() => {
     if (activeCategory === "All") return videosData;
-    return videosData.filter((v) => v.category === activeCategory);
-  }, [activeCategory]);
+    return videosData.filter(v => v.category === activeCategory);
+  }, [activeCategory, videosData]);
 
   const featuredVideo = filteredVideos[0] ?? null;
   const gridVideos = filteredVideos.slice(1);
+
+  if (loading) return (
+    <MediaSkeleton />
+  )
 
   return (
     <div
