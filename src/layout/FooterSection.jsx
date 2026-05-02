@@ -24,7 +24,7 @@ const normalizeSocials = (data) => {
 
     return {
       icon: <Icon />,
-      link: item.url || "#",
+      link: item.link || "#",
     };
   });
 };

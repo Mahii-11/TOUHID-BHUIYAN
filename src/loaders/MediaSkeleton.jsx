@@ -1,4 +1,4 @@
-export function MediaSkeleton() {
+export default function MediaSkeleton() {
   return (
     <div
       className="min-h-screen relative animate-pulse"
