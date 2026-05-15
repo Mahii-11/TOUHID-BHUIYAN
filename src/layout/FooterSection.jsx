@@ -173,7 +173,7 @@ export const FooterSection = () => {
           className="flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <p className="text-xs md:text-sm text-gray-400">
-            © 2025 Prof. Touhid Bhuiyan |
+            © 2025 Dr. Touhid Bhuiyan |
             <Link to="/terms" className="ml-1 hover:text-yellow-400 transition">
               Terms of Service
             </Link>

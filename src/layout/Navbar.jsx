@@ -82,7 +82,7 @@ export default function PremiumNavbar() {
               />
             </div>
             <div className="flex items-center gap-2.5 flex-wrap">
-              <h1 className="text-[0.88rem] font-bold tracking-wide text-white uppercase font-['Playfair_Display'] whitespace-nowrap">
+              <h1 className="text-[0.88rem] font-bold tracking-wide text-white font-['Playfair_Display'] whitespace-nowrap">
                 {nav.name}
               </h1>
               <span className="text-[#c9a84c]/40 text-xs hidden md:inline">|</span>

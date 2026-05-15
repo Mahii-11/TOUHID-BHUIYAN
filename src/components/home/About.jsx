@@ -28,7 +28,7 @@ export default function About() {
             <div className="container mx-auto px-6 md:px-12">
                <div className="flex flex-col md:flex-row gap-12">
                   <div className="w-full md:w-3/4 space-y-6">
-                     <h3 className="text-3xl font-serif font-bold text-navy">About Prof. Touhid Bhuiyan</h3>
+                     <h3 className="text-3xl font-serif font-bold text-navy">About Dr Touhid Bhuiyan</h3>
                      <div className="h-1 w-20 bg-gold"></div>
                      
                      <div className="text-gray-600 space-y-4 leading-relaxed text-lg">
